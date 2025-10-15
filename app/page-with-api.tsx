@@ -84,7 +84,9 @@ export default function VerificationPage() {
         body: formData,
       })
 
+      console.log('[frontend] Sending selfie to /api/validate-selfie form size (approx):', stepData.selfieImage.size)
       const data = await response.json()
+      console.log('[frontend] /api/validate-selfie response', response.status, data)
 
       if (!response.ok) {
         throw new Error(data.error || "Validation failed")
@@ -150,7 +152,9 @@ export default function VerificationPage() {
         body: formData,
       })
 
+      console.log('[frontend] Sending selfie+id to /api/match-face selfieSize=', stepData.selfieImage.size, 'idSize=', stepData.idImage.size)
       const data = await response.json()
+      console.log('[frontend] /api/match-face response', response.status, data)
 
       if (!response.ok) {
         throw new Error(data.error || "Face match failed")
@@ -209,7 +213,9 @@ export default function VerificationPage() {
         body: formData,
       })
 
+      console.log('[frontend] Sending id to /api/read-id idSize=', stepData.idImage.size)
       const data = await response.json()
+      console.log('[frontend] /api/read-id response', response.status, data)
 
       if (!response.ok) {
         throw new Error(data.error || "ID reading failed")
