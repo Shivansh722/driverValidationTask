@@ -1,0 +1,163 @@
+Face Match API - Global
+API Description
+Objective
+The Face Match API determines whether two facial images belong to the same person.
+
+info
+The Face Match API verifies whether two images belong to the same person. It neither checks the completeness, quality of the face passed as input, nor does it validate whether the inputs are selfies or ID images. The model simply compares the two images and returns whether it is a match or not.
+
+For proper input validation and reliable results, it is recommended to invoke the Selfie Validation module before the Face Match step. Please refer to our Selfie Validation API documentation for more details.
+
+Input	Output
+Two different image sources with the individual's face	A "yes" or "no" for the face match evaluation across the two image sources
+API URL
+https://<regionCode>.idv.hyperverge.co/v1/matchFace
+
+
+API Endpoint
+matchFace
+
+regionCode Details
+The API URL accepts any of the following region code values against the regionCode placeholder. For example, "https://ind.idv.hyperverge.co/v1/matchFace"
+
+Region	regionCode Value
+India	ind
+USA	usa
+Africa	zaf
+Europe	irl
+Singapore	sgp
+Overview
+The API is RESTful and uses standard HTTP verbs and status codes. The responses are in JSON format and you should upload all images and ﬁles as form-data through a POST request.
+
+Authentication
+You need a unique pair of application ID ( appId ) and application key (appKey) from HyperVerge to verify your identity for accessing the API.
+
+API Request Details
+Method - POST
+Headers
+Parameter	Mandatory or Optional	Description	Accepted Values
+content-type	Mandatory	This parameter defines the media type for the request payload.	multipart/form-data
+appId	Mandatory	Application ID shared by HyperVerge	N/A. This is a unique value.
+appKey	Mandatory	Application Key shared by HyperVerge	N/A. This is a unique value.
+transactionId	Mandatory	Unique ID for the customer journey.	N/A. Any defined unique value mapped to a transaction in your business ecosystem.
+Inputs
+Type of Image Input
+The API supports both image files and image URLs as input.
+
+The following are the different variations of the request body based on the type of input images.
+
+Selfie and ID Match
+Selfie and ID Face String Match
+Selfie and Selfie Match
+Selfie and Selfie Face String Match
+ID and ID Match
+selfie - A selfie image in JPEG, PNG or TIFF format.
+id - An image of the ID card in JPEG, PNG or TIFF format.
+This match type compares a selfie against a complete ID card image.
+
+Requests
+Selfie and ID Match
+Selfie and ID Face String Match
+Selfie and Selfie Match
+Selfie and Selfie Face String Match
+ID and ID Match
+The following is a sample request for matching a selfie with an identity document's image:
+
+curl --location --request POST 'https://<regionCode>.idv.hyperverge.co/v1/matchFace' \
+--header 'appId:<Enter_the_HyperVerge_appId>' \
+--header 'appKey:<Enter_the_HyperVerge_appKey>' \
+--header 'transactionId:<Enter_the_HyperVerge_transactionID>' \
+--header 'content-type: multipart/form-data' \
+--form 'selfie=@abc.png' \
+--form 'id=@xyz.png'
+
+
+Test this API
+Optional Configurations
+The following are the optional parameters configurable for the API.
+
+Parameter	Position	Value	Default	Description
+preferences.returnScore	Body	"yes"/"no"	"no"	This will provide the match-score in the output when set to "yes".
+General Image Input Guidelines
+The API supports JPEG, PNG and TIFF images and PDFs inputs.
+Ensure that the document in the image is legible. This is a rule of thumb for our OCR servers to accurately extract any text from an image.
+Reduce the size of the image as much as possible to optimise the reponse time while also ensuring its legibility criteria as mentioned earlier. Larger image sizes lead to higher uploading and processing time.
+You can keep the width of the ID card image at least 800 pixels and the JPEG compression quality factor above 80%.
+For our DL server to extract text from the document, the aspect ratio of the input image should be the same as the aspect ratio of the original document. Hence utmost care should be taken while resizing the image to maintain the aspect ratio
+Success Response
+A success response from the API reflects the success status with a status code of 200 and a result object containing the response data with the following field-value pairs.
+
+{
+  "status": "success", 
+  "statusCode": "200", 
+  "result": 
+  { 
+    "details": 
+    { 
+        "match": { 
+          "value": "yes"/"no", 
+          "score": <face_match_score> // optional, 
+          "confidence": "high"/"low", 
+        },
+      }, 
+      "summary" : { 
+        "action" : "pass/fail/manualReview", 
+        "details : [], 
+        } 
+  },
+
+  "metaData": { 
+       "requestId": "<Request_ID>", 
+       "transactionId": "<Transaction_ID>", 
+   }, 
+}
+
+
+Error Responses
+Face Not Detected
+Selfie Image
+Incorrect Parameters
+Incorrect Size
+Invalid idFaceString
+{
+  "status" : "failure",
+  "statusCode" : "400",
+  "error" : "Face not detected in ID image"
+}
+
+
+Invalid selfieFaceString
+Multiple Face Detected
+Requests Rate Limit Exceeded
+Internal Server Error
+Server Busy
+{
+    "status": "failure",
+    "statusCode": 400,
+    "metadata": {
+        "requestId": "<Request_ID>",
+        "transactionId": "<Transaction_ID>"
+    },
+    "result": {
+        "error": "Invalid value passed to selfieFaceString",
+        "summary": {
+            "action": "fail",
+            "details": [
+                {
+                    "code": "111",
+                    "message": "Bad Request. Please refer the documentation"
+                }
+            ]
+        }
+    }
+}
+
+
+Error Response Details
+A failure or error response from the module contains a failure status, with a relevant status code and error message. The following table lists all error responses:
+
+Status Code	Error Message	Error Description
+400	Face not detected in Selfie image	The AI model failed to detect the face in the selfie.
+400	Face not detected in ID image	The AI model failed to detect the face in the image of the identification document.
+400	Missing / Wrong combination of parameters	The request contains an invalid combination of parameters. Please refer to the valid parameter combinations in the documentation.
+400	image size cannot be greater than 6MB	The maximum size of input image is 6MB which you have exceeded.

@@ -1,0 +1,280 @@
+ID Card Validation API
+Objective
+The ID Card Validation API extracts text from officially valid documents (OVDs) images while conducting supplementary image checks for thorough verification.
+
+Input	Output
+An image of any of the officially valid documents
+supported by HyperVerge, the associated country, and the document type	The data extracted from the image
+API URL
+ https://{regionCode}.idv.hyperverge.co/v1/readId
+
+
+API Endpoint
+readId
+regionCode Details
+The API URL accepts any of the following region code values against the regionCode placeholder. For example, "https://ind.idv.hyperverge.co/v1/readId"
+
+Region	regionCode Value
+India	ind
+USA	usa
+Africa	zaf
+Europe	irl
+Singapore	sgp
+Overview
+The API is RESTful and uses standard HTTP verbs and status codes. The responses are in JSON format and you should upload all images and files as form-data through a POST request.
+
+Authentication
+You need a unique pair of application ID ( appId ) and application key (appKey) from HyperVerge to verify your identity for accessing the API.
+
+API Request Details
+Method - POST
+Headers
+Parameter	Mandatory or Optional	Description	Valid Values
+content-type	Mandatory	This parameter defines the media type for the request payload.	multipart/form-data
+appId	Mandatory	Application ID shared by HyperVerge.	N/A. This is a unique value.
+appKey	Mandatory	Application Key shared by HyperVerge.	N/A. This is a unique value.
+transactionId	Mandatory	A unique identifier for tracking this specific API request.	N/A. Any defined unique value mapped to a transaction in your business ecosystem.
+Inputs
+The following table provides information on the parameters used in the request body for the API.
+
+Parameter	Description	Mandatory or Optional	Allowed Values	Default Value
+imageor pdf	The image file or PDF for the ID document	Mandatory	The file can be in JPG, JPEG, PNG or PDF format	Not Applicable
+countryId	The 3 Letter Alpha-code of the country. Click here to see the list of supported countries and associated country IDs.	Mandatory	Not Applicable	Not Applicable
+documentId	The ID of the document. Click here to see the list of supported documents and associated document IDs	Mandatory	Not Applicable	Not Applicable
+expectedDocumentSide	The expected side of the document (front or back)	Optional	"front" or "back"	Not Applicable
+Request
+The following code shows a standard curl request for the API.
+
+curl --location --request POST 'https://ind.idv.hyperverge.co/v1/readId' \
+--header 'Content-Type: multipart/form-data' \
+--header 'appId: <Enter_the_HyperVerge_appId>' \
+--header 'appKey: <Enter_the_HyperVerge_appKey>' \
+--header 'transactionId: <Enter_the_HyperVerge_transactionID>' \
+--form 'image=@"<path_to_image_file>"' \
+--form 'countryId="<Enter_the_Country_ID>"' \
+--form 'documentId="<Enter_the_Document_ID>"' \
+--form 'expectedDocumentSide="<front_or_back>"'
+
+
+Test this API
+Success Response
+The following is a SUCCESS response for a valid request made to the API.
+
+{
+  "status": "success",
+  "statusCode": "200",
+  "result": {
+    "details": [
+      {
+        "idType": "<Type_Of_ID>",
+        "fieldsExtracted": {
+          "firstName": {
+            "value": "<Extracted_First_Name>",
+            "confidence": "<High/Low>"
+          },
+          "middleName": {
+            "value": "<Extracted_Middle_Name>",
+            "confidence": "<High/Low>"
+          },
+          "lastName": {
+            "value": "<Extracted_Last_Name>",
+            "confidence": "<High/Low>"
+          },
+          "fullName": {
+            "value": "<Extracted_Full_Name>",
+            "confidence": "<High/Low>"
+          },
+          "dateOfBirth": {
+            "value": "<Date_Of_Birth_In_DD-MM-YYYY_Format>",
+            "confidence": "<High/Low>"
+          },
+          "dateOfIssue": {
+            "value": "<Date_Of_Issue>",
+            "confidence": "<High/Low>"
+          },
+          "dateOfExpiry": {
+            "value": "<Date_Of_Expiry>",
+            "confidence": "<High/Low>"
+          },
+          "countryCode": {
+            "value": "<Extracted_Country_Code>",
+            "confidence": "<High/Low>"
+          },
+          "type": {
+            "value": "<Extracted_Type>",
+            "confidence": "<High/Low>"
+          },
+          "gender": {
+            "value": "<Extracted_Gender>",
+            "confidence": "<High/Low>"
+          },
+          "address": {
+            "value": "<Extracted_Address>",
+            "street": "<Extracted_Street>",
+            "district": "<Extracted_District>",
+            "zipCode": "<Extracted_Zip_Code>",
+            "province": "<Extracted_Province>",
+            "houseNumber": "<Extracted_House_Number>",
+            "additionalInfo": "<Additional_Info>",
+            "confidence": "<High/Low>"
+          },
+          "idNumber": {
+            "value": "<Extracted_ID_Number>",
+            "confidence": "<High/Low>"
+          },
+          "placeOfBirth": {
+            "value": "<Extracted_Place_Of_Birth>",
+            "confidence": "<High/Low>"
+          },
+          "placeOfIssue": {
+            "value": "<Extracted_Place_Of_Issue>",
+            "confidence": "<High/Low>"
+          },
+          "yearOfBirth": {
+            "value": "<Extracted_Year_Of_Birth>",
+            "confidence": "<High/Low>"
+          },
+          "age": {
+            "value": "<Extracted_Age>",
+            "confidence": "<High/Low>"
+          },
+          "fatherName": {
+            "value": "<Extracted_Father_Name>",
+            "confidence": "<High/Low>"
+          },
+          "motherName": {
+            "value": "<Extracted_Mother_Name>",
+            "confidence": "<High/Low>"
+          },
+          "husbandName": {
+            "value": "<Extracted_Husband_Name>",
+            "confidence": "<High/Low>"
+          },
+          "spouseName": {
+            "value": "<Extracted_Spouse_Name>",
+            "confidence": "<High/Low>"
+          },
+          "nationality": {
+            "value": "<Extracted_Nationality>",
+            "confidence": "<High/Low>"
+          },
+          "mrzString": {
+            "value": "<Extracted_MRZ_String>",
+            "confidence": "<High/Low>"
+          },
+          "homeTown": {
+            "value": "<Extracted_Home_Town>",
+            "confidence": "<High/Low>"
+          }
+        }
+      }
+    ],
+    "summary": {
+      "action": "<Pass/Fail/Manual_Review>",
+      "details": []
+    }
+  },
+  "metaData": {
+    "requestId": "<Request_ID>",
+    "transactionId": "<Transaction_ID>"
+  }
+}
+
+
+Success Response Details
+The Summary Object
+The summary object suggests the final action for the user's application.
+
+The configuration is customizable. It can be changed based on your preferences at anytime of your integration and after go-live.
+The configuration is hosted in the backend and not in the SDK/frontend.
+New features can be supported immediately, thus not requiring app release at your end.
+The following code samples are the 3 types of actions responses that you will find in the response.
+
+Approve
+Reject
+Manual
+This is the response where the application is approved for further processing.
+
+{
+  "summary": {
+    "action": "pass",
+    "details": []
+  }
+}
+
+
+Parameter	Type	Description
+status	string	The status of the request
+statusCode	string	The HTTP status code of the response
+idType	string	The type of identification document
+value	string	The value extracted for a specific field
+confidence	string	The confidence level of the extracted value, either "high" or "low"
+firstName	string	The extracted first name
+middleName	string	The extracted middle name
+lastName	string	The extracted last name
+fullName	string	The extracted full name
+dateOfBirth	string	The extracted date of birth in DD-MM-YYYY format
+dateOfIssue	string	The extracted date of issue
+dateOfExpiry	string	The extracted date of expiry
+countryCode	string	The extracted country code
+type	string	The extracted document type
+gender	string	The extracted gender
+address	object	The detailed address fields extracted
+street	string	The extracted street name
+district	string	The extracted district name
+zipCode	string	The extracted ZIP code
+province	string	The extracted province name
+houseNumber	string	The extracted house number
+additionalInfo	string	Additional address-related information
+idNumber	string	The extracted ID number
+placeOfBirth	string	The extracted place of birth
+placeOfIssue	string	The extracted place of issue
+yearOfBirth	string	The extracted year of birth
+age	string	The extracted age
+fatherName	string	The extracted father's name
+motherName	string	The extracted mother's name
+husbandName	string	The extracted husband's name
+spouseName	string	The extracted spouse's name
+nationality	string	The extracted nationality
+mrzString	string	The extracted Machine Readable Zone (MRZ) string
+homeTown	string	The extracted home town
+action	string	The action recommended for the result, such as "pass," "fail," or "manualReview"
+requestId	string	The unique identifier for the request
+transactionId	string	The transaction ID associated with the request
+Error Responses
+Error 400 - Input Error
+Error 422 - Document Not Detected
+Error 423 - Document Not Supported
+Error 429 - Rate limit exceeded
+Error 500/501/503 - Server Error
+{ 
+   "status": "failure", 
+   "statusCode": "400", 
+   "metadata": { 
+   "requestId": "<Request_ID>", 
+     "transactionId": "<Transaction_ID>"  
+  }, 
+   "result": { 
+       "error": "API call requires at least one input image" 
+    } 
+ }
+
+
+Error Response Details
+Status Code	Error Message	Error Description
+400	API call requires at least one input image	This error is returned when 'image' is not sent in the API call.
+400	API call handles only upto 1 images	This error is returned when more than 1 images are sent in the API call.
+400	TransactionId not detected	This error is returned when 'transactionId' is not sent in request headers.
+400	countryID/documentId is missing	This error is returned when 'country/document ID' is missing.
+422	Document Not Detected	When the AI model could not find a Document in the image sent.
+423	Document not supported	This error is returned when the document in the image is not supported.
+429	Rate limit exceeded	This error is returned when the number of transactions per minute has crossed the limit set for your credentials.
+500/501	Internal Server Error	This happens when there is something wrong with HyperVerge's server.
+503	Server busy	This happens when there is an overload on HyperVerge's server.
+Additional Configurations and Checks
+In addition to the text extraction, the ID Card Validation API can also perform additional checks on the image and support additional configurations. You can find the detailed list here.
+
+Some of these checks and configurations are included in the prior response samples.
+
+caution
+If you do not find any of these additional checks or configurations in the API response then they might not have been enabled for you. Contact the HyperVerge team for resolution.

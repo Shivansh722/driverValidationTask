@@ -1,0 +1,224 @@
+Selfie Validation API
+API Description
+Objective
+The Selfie Validation API, also known as the Liveness API, verifies if a user's selfie has been captured by a live individual at the time of the verification indicating no fraudulent impersonation attempt. It also supports additional configurations to suit your business requirements.
+
+Did you know?
+In a fraudulent "photo-on-photo" scenario, a fraudster attempts to use an existing photograph of a different individual to deceive the verification system.
+
+API URL
+https://<regionCode>.idv.hyperverge.co/v1/checkLiveness
+
+
+API Endpoint
+checkLiveness
+
+Supported Regions (regionCode)
+The API URL accepts any of the region codes listed in the table below as values for the regionCode placeholder.
+
+Region	regionCode Value
+Africa	zaf
+Europe	irl
+India	ind
+Indonesia	idn
+Singapore	sgp
+USA	usa
+For example, to use this API for India, the URL would be: "https://ind.idv.hyperverge.co/v1/checkLiveness"
+
+Overview
+The API is RESTful and uses standard HTTP verbs and status codes. The responses are in JSON format and you should upload all images and ﬁles as form-data through a POST request.
+
+Authentication
+You need a unique pair of application ID ( appId ) and application key (appKey) from HyperVerge to verify your identity for accessing the API.
+
+API Request Details
+Method - POST
+Headers
+Parameter	Mandatory or Optional	Description	Valid Values
+Content-type	Mandatory	The media type for the request payload.	multipart/form-data
+appId	Mandatory	The application identifier shared by HyperVerge. You can find the details in the dashboard's credentials tab.	This should be a unique value.
+appKey	Mandatory	The application key shared by HyperVerge. You can find the details in the dashboard's credentials tab.	This should be a unique value.
+transactionId	Mandatory	A unique identifier for tracking a user journey.	This should be both unique and easily associated with the specific user's interaction in your application(s).
+Inputs
+The following table provides information on the parameters used in the request body for the API:
+
+Parameter	Mandatory or Optional	Description	Allowed Values	Default Values
+image or pdf	Mandatory	content of the image/pdf	Not Applicable	Not Applicable
+returnCroppedImageURL	Optional	When enabled, returns a signed URL of the cropped face image from the uploaded selfie	yes, no	no
+qualityChecks.blur	Optional	Flag to perform blur detection on the image	yes,no	no
+qualityChecks.eyesClosed	Optional	Flag to check if eyes are closed in the image	yes, no	no
+qualityChecks.occlusion	Optional	Flag to check if the face is partially occlused by any object, hand, mask ,or accessory	yes, no	no
+qualityChecks.multipleFaces	Optional	Flag to detect multiple faces in the image	yes, no	no
+qualityChecks.headTurned	Optional	Flag to detect if the head is turned in the image	yes, no	no
+Additional Quality Checks
+For a complete list of all quality checks, fraud checks, and advanced features, see our Additional Checks for Liveness page.
+Depending on the checks enabled for your credentials, all or a subset of these quality checks would be available in your API response.
+
+Request
+The following code shows the standard cURL requests for the API:
+
+For Liveness Check
+Other Checks included
+curl --location --request POST 'https://<regionCode>.idv.hyperverge.co/v1/checkLiveness' \
+--header 'Content-Type: multipart/form-data' \
+--header 'appId: <Enter_the_HyperVerge_appId>' \
+--header 'appKey: <Enter_the_HyperVerge_appKey>' \
+--header 'transactionId: <Enter_the_HyperVerge_transactionID>' \
+--form 'image=@"<Enter_the_image_path>"' \
+--form 'returnCroppedImageURL="<Enter_yes_or_no>"'
+
+
+Test this API
+Success Response
+The following code snippets demonstrate success responses from the API:
+
+{
+  "status": "success", 
+  "statusCode": "200", 
+  "result": { 
+    "details": { 
+      "liveFace": { 
+        "value": "yes"/"no", 
+        "confidence": "high"/"low"
+      }, 
+      "qualityChecks": { // returned if corresponding quality checks are enabled in the request 
+        "eyesClosed": { 
+          "confidence": "high"/"low", 
+          "value": "yes"/"no"
+        }, 
+        "occlusion": { 
+          "confidence": "high"/"low", 
+          "value": "yes"/"no"
+        }, 
+        "multipleFaces": { 
+          "confidence": "high"/"low", 
+          "value": "yes"/"no"
+        }, 
+        "blur": { 
+          "confidence": "high"/"low", 
+          "value": "yes"/"no"
+        } 
+      }
+    }, 
+    "croppedImageUrl": "<URL_of_the_Cropped_Selfie_Image>", // returned if returnCroppedImageURL is enabled in the request 
+    "summary": { 
+      "action": "pass/fail/manualReview", 
+      "details": []
+    } 
+  }, 
+  "metaData": { 
+    "requestId": "xxx", 
+    "transactionId": "yyy"
+  }
+}
+
+
+Success Response Details
+Parameter	Type	Description
+status	string	The status of the request
+statusCode	string	The HTTP status code returned for the request
+liveFace.value	string	Indicates whether a face is live or non-live. Returns "yes" or "no" accordingly.
+liveFace.confidence	string	The confidence level for live face detection, indicated by returning either "high" or "low"
+qualityChecks.eyesClosed.value	string	Indicates whether the eyes are closed in the image
+qualityChecks.eyesClosed.confidence	string	The confidence level for eyes closed detection
+qualityChecks.occlusion.value	string	Indicates if the face is partially or fully occluded by objects, hands, masks, accessories (like sunglasses, hats), or other obstructions that prevent clear visibility of facial features
+qualityChecks.occlusion.confidence	string	The confidence level for occlusion
+qualityChecks.multipleFaces.value	string	Indicates whether multiple faces are detected in the image
+qualityChecks.multipleFaces.confidence	string	The confidence level for multiple faces detection
+qualityChecks.blur.value	string	Indicates whether the image is blurred
+qualityChecks.blur.confidence	string	The confidence level for blur detection
+croppedImageUrl	string	The signed URL to access the cropped face image from the uploaded selfie (returned when returnCroppedImageURL is enabled)
+summary.action	string	The result of the evaluation, either "pass", "fail", or "manualReview"
+summary.details	array	An array providing additional information about the evaluation summary
+metaData.requestId	string	A unique identifier for the request
+metaData.transactionId	string	A unique identifier for the transaction
+The Summary Object
+The Summary object helps in deciding the final action for a user's application.
+
+It contains any of the following decisions:
+
+"Fail(reject)",
+"Manual Review",
+"Pass(approve)".
+The configuration for these decisions are customisable. It can be changed to suit your business requirements through the integration and also after going live.
+
+The configuration is hosted in the backend and not in the SDK or frontend.
+
+New features can be supported immediately not requiring application releases at your end.
+
+The following code samples are the 3 types of actions responses that you will find in the response.
+
+Approve
+Reject
+Manual Review
+This is the response where the application is approved for further processing.
+
+"summary": {
+    "action": "pass",
+    "details": []
+}
+
+
+Error Responses
+The following are the error response for the API.
+
+Face not detected
+Eyes Closed
+Rate limit error
+{
+  "status": "failure", 
+  "statusCode": "422", 
+  "metadata": { 
+    "requestId": "xxx", 
+    "transactionId": "yyyyy" 
+  }, 
+  "result": { 
+    "error": "Face not detected" 
+  } 
+}
+
+
+Multiple Faces Detected
+Face Blurred
+Face Masked
+Server Error
+{
+  "status": "failure",
+  "statusCode": "433",
+  "error": "Multiple faces detected"
+}
+
+
+Error Response Details
+A failure or error response from the module contains a failure status, with a relavant status code and error message. The following table lists all error responses.
+
+Status Code	Error Message	Error Description
+400	Invalid Request	The request is invalid due to missing image or invalid format. Please upload a valid JPEG/PNG image
+422	Face not detected	The model failed to detect a face in the selfie
+423	Eyes Closed	The uploaded selfie was rejected because the user's eyes are closed. Ensure that the eyes are fully open and clearly visible before capturing the image
+429	Rate limit error	You have exceeded the configured rate limit for transactions per minute
+432	Non White Background	The background is not white. Set allowOnlyWhiteBackground=no to allow non-white backgrounds
+433	Multiple faces detected	The uploaded selfie was rejected because the user's eyes are closed. Ensure that the eyes are fully open and clearly visible before capturing the image
+438	Face Blurred	The uploaded selfie was rejected because the face appears blurred. Capture a clearer image with proper focus and sufficient lighting
+439	Face is masked	The uploaded selfie was rejected because the face is partially or fully covered by a mask. Ensure that the face is fully visible and unobstructed before capturing the image
+439	Face is occluded	The uploaded selfie was rejected because the face is hidden or obscured from view. Ensure that the face is fully visible without any obstructions
+441	Nudity	Explicit content detected in the image. Please remove any inappropriate content
+450	Bad Face Clarity	ID quality check failed. Please retake the ID image with better quality
+5xx	Server Error	Kindly check the request headers or contact the HyperVerge team for resolution
+Reading Results for Selfie Validation
+We recommend using the liveFace parameter in the response to decide the result.
+
+liveFace.value = "yes" , when the face in the image taken is live
+liveFace.value = "no" , when face in the image taken is not live
+action parameter in the response can be used to decide whether the image sent requires manual review or not (optional)
+Logic Recommended
+How to assess the Liveness, based on the response returned by the API:
+
+Approved
+Rejected
+Manual Review
+When the following conditions are met:
+
+statusCode = 200
+liveFace.value = "yes"
+action = "pass"
