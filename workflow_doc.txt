@@ -1,0 +1,102 @@
+Web SDK - Integration Guide
+This guide provides step-by-step instructions for integrating the HyperKYC Web SDK into your project.
+
+Additional Resource
+Complete Sample Project: A ready to use example project with all the code you need to get started with the Web SDK quickly.
+Prerequisites
+Before starting the integration, please ensure you meet all the requirements listed in the Prerequisites for Web SDK Integration section.
+
+Integration Steps
+The following steps will guide you through implementing the HyperVerge WebSDK in your application:
+
+Step 1: Add the SDK Script to Your Project
+Add the following script to your HTML page :
+
+<script src="https://hv-camera-web-sg.s3-ap-southeast-1.amazonaws.com/hyperverge-web-sdk@<actual_sdk_version>/src/sdk.min.js">
+
+
+
+Important
+Replace @<actual_sdk_version> with the specific version number for production use. Please check out the changelog for the current recommended version.
+Step 2: Launch the SDK
+You have two options to initialise and launch the HyperKYC SDK:
+
+Option 1: Pass the WorkflowID and transactionID directly
+Create a HyperKycConfig instance and launch the workflow:
+
+JavaScript
+const hyperKycConfig = new HyperKycConfig(
+  "<jwtToken>",        // JWT token generated from your backend
+  "<workflowID>",      // Workflow identifier
+  "<transactionID>",   // Unique transaction identifier
+  true                  // Optional: true to show landing page, default is false
+);
+
+await HyperKYCModule.launch(hyperKycConfig, callback); // see handler function in the error handling section for callback function
+
+
+Option 2: Pass only the authToken containing the WorkflowID and transactionID
+1. Generate the auth token from your backend.
+
+2. Initialise the SDK using the generated token:
+
+JavaScript
+
+const hyperKycConfig = new HyperKycConfig(
+  "<jwtToken>", // JWT token with WorkflowID and transactionID in payload
+  true           // Optional: true to show landing page, default is false
+);
+
+await HyperKYCModule.launch(hyperKycConfig, callback); // see handler function in the error handling section for callback function
+
+
+
+Parameter Descriptions
+The following table provides the details of the parameters required for the Launch SDK step:
+
+Parameter Name	Description
+jwtToken	
+A secure JWT token generated from your backend to authenticate requests
+Important: Always generate JWT tokens securely from your backend to protect your appId and appKey
+workflowID	Name/ID of the workflow you're launching
+transactionID	A unique ID for tracking individual transactions
+Landing Page Flag	If set to true, a landing page is displayed before the configured journey begins, informing users about what to expect during the journey landing page
+Callback	A function to handle the SDK response after workflow completion
+Optional Configurations
+Customise your HyperKYC Web SDK setup with configurations based on your specific needs.
+SDK Responses
+For detailed information about Web SDK responses, see the SDK Response Documentation.
+
+Error Handling
+The following codeblock provides an example of how to handle the status values in the HyperKycResult object:
+
+Javascript
+
+const handler = (HyperKycResult) => {
+      switch (HyperKycResult.status) {
+        case "user_cancelled":
+          console.log("User cancelled the workflow");
+          break;
+        case "error":
+          alert("Error");
+          console.log(HyperKycResult);
+          break;
+        case "auto_approved":
+          alert("User approved");
+          console.log()
+          break;
+        case "auto_declined":
+          console.log("Workflow auto-declined");
+          break;
+        case "needs_review":
+          console.log("Workflow needs manual review");
+          break;
+        default:
+          console.warn("Unknown status:", HyperKycResult.status);
+          break;
+      }
+    };
+
+
+Important: Always handle all possible status values to prevent technical errors and workflow interruptions.
+

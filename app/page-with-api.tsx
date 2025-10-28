@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { useToast } from "@/components/ui/use-toast"
+import WorkflowTrigger from "@/components/ui/workflow-trigger"
 import { Camera, Shield, IdCard, CheckCircle2, Upload, Loader2 } from "lucide-react"
 
 type VerificationStep = "idle" | "selfie" | "faceMatch" | "readId" | "complete"
@@ -287,45 +288,50 @@ export default function VerificationPage() {
 
         {/* Main Content */}
         {currentStep === "idle" && (
-          <Card className="border-2">
-            <CardHeader>
-              <CardTitle className="text-2xl flex items-center gap-2">
-                <Shield className="h-6 w-6 text-blue-600" />
-                Welcome to Identity Verification
-              </CardTitle>
-              <CardDescription>
-                We'll verify your identity through three quick steps: selfie validation, face matching, and ID card verification.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid gap-4">
-                <div className="flex items-start gap-3 p-4 bg-blue-50 rounded-lg">
-                  <Camera className="h-5 w-5 text-blue-600 mt-0.5" />
-                  <div>
-                    <h3 className="font-semibold">Step 1: Selfie Validation</h3>
-                    <p className="text-sm text-gray-600">Capture a live selfie for liveness detection</p>
+          <div className="space-y-6">
+            <Card className="border-2">
+              <CardHeader>
+                <CardTitle className="text-2xl flex items-center gap-2">
+                  <Shield className="h-6 w-6 text-blue-600" />
+                  Welcome to Identity Verification
+                </CardTitle>
+                <CardDescription>
+                  We'll verify your identity through three quick steps: selfie validation, face matching, and ID card verification.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid gap-4">
+                  <div className="flex items-start gap-3 p-4 bg-blue-50 rounded-lg">
+                    <Camera className="h-5 w-5 text-blue-600 mt-0.5" />
+                    <div>
+                      <h3 className="font-semibold">Step 1: Selfie Validation</h3>
+                      <p className="text-sm text-gray-600">Capture a live selfie for liveness detection</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3 p-4 bg-purple-50 rounded-lg">
+                    <Shield className="h-5 w-5 text-purple-600 mt-0.5" />
+                    <div>
+                      <h3 className="font-semibold">Step 2: Face Match</h3>
+                      <p className="text-sm text-gray-600">Match your selfie with your ID photo</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3 p-4 bg-green-50 rounded-lg">
+                    <IdCard className="h-5 w-5 text-green-600 mt-0.5" />
+                    <div>
+                      <h3 className="font-semibold">Step 3: ID Verification</h3>
+                      <p className="text-sm text-gray-600">Extract and verify information from your ID</p>
+                    </div>
                   </div>
                 </div>
-                <div className="flex items-start gap-3 p-4 bg-purple-50 rounded-lg">
-                  <Shield className="h-5 w-5 text-purple-600 mt-0.5" />
-                  <div>
-                    <h3 className="font-semibold">Step 2: Face Match</h3>
-                    <p className="text-sm text-gray-600">Match your selfie with your ID photo</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3 p-4 bg-green-50 rounded-lg">
-                  <IdCard className="h-5 w-5 text-green-600 mt-0.5" />
-                  <div>
-                    <h3 className="font-semibold">Step 3: ID Verification</h3>
-                    <p className="text-sm text-gray-600">Extract and verify information from your ID</p>
-                  </div>
-                </div>
-              </div>
-              <Button onClick={startVerification} className="w-full" size="lg">
-                Start Verification
-              </Button>
-            </CardContent>
-          </Card>
+                <Button onClick={startVerification} className="w-full" size="lg">
+                  Start Verification
+                </Button>
+              </CardContent>
+            </Card>
+            
+            {/* HyperKYC Workflow Trigger */}
+            <WorkflowTrigger />
+          </div>
         )}
 
         {currentStep === "selfie" && (
