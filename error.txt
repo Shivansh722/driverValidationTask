@@ -1,0 +1,189 @@
+SDK Check: {HyperKYCModule: true, HyperKycConfig: true, hyperKeys: Array(9), HyperKYCModuleType: 'object', HyperKycConfigType: 'function'}
+workflow-trigger.tsx:51 HyperKYCModule methods: ['launch']
+workflow-trigger.tsx:54 HyperKycConfig: ƒ b(d,a,c){function f(){this.docFrontCaptureTitle="Capture Front Side";this.docBackCaptureTitle="Capture Back Side";this.docCaptureDescription="";this.docCaptureBottomDescription="Make sure your docume…
+workflow-trigger.tsx:70 🔄 Generating JWT for: {workflowID: 'shivanch_test_workflow', transactionID: 'txn-1761808528253'}
+workflow-trigger.tsx:88 ✅ JWT Generated successfully
+workflow-trigger.tsx:94 🔍 JWT Payload: {appId: 'g294ap', iat: 1761808528, exp: 1761812128}
+workflow-trigger.tsx:100 🏗️ Creating HyperKycConfig with Option 1: {tokenLength: 151, tokenStart: 'eyJhbGciOiJIUzI1NiIs...', workflowID: 'shivanch_test_workflow', transactionID: 'txn-1761808528253'}
+workflow-trigger.tsx:115 🔍 Config object created: b {accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6I…TI4fQ.ckMSEyhnlt8SNw6YkeZrua4aBrHtna35sD7XRh2dl2o', userWorkflow: 'shivanch_test_workflow', transactionId: 'txn-1761808528253', kycWorkflow: Array(0), totalConfigs: 0, …}
+workflow-trigger.tsx:116 🔍 Config object type: object
+workflow-trigger.tsx:117 🔍 Config object constructor: b
+workflow-trigger.tsx:118 🔍 Config object keys: (43) ['accessToken', 'userWorkflow', 'transactionId', 'kycWorkflow', 'totalConfigs', 'configNumber', 'documentResult', 'livenessResult', 'faceMatchResult', 'regionName', 'shouldShowDocInstructionPage', 'shouldShowFaceInstructionPage', 'shouldShowDocReviewScreen', 'chooseDocumentCaptureOption', 'documentParams', 'livenessParams', 'documentHeaders', 'livenessHeaders', 'handleDocRetries', 'handleFaceRetries', 'livenessThreshold', 'documentType', 'baseUrl', 'imageBackArrow', 'imageClose', 'countryPickerTitle', 'countryPickerDescription', 'countryPickerButtonText', 'documentPickerTitle', 'documentPickerDescription', 'documentPickerButtonText', 'flow', 'resultStatus', 'documentSelectId', 'countrySelectId', 'documentSelectPopupId', 'countrySelectPopupId', 'documentSides', 'failureTag', 'cancelledTag', 'successTag', 'docTextConfig', 'faceTextConfig']
+workflow-trigger.tsx:119 🔍 Config object values: (43) ['eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6I…TI4fQ.ckMSEyhnlt8SNw6YkeZrua4aBrHtna35sD7XRh2dl2o', 'shivanch_test_workflow', 'txn-1761808528253', Array(0), 0, 0, Array(0), Array(0), Array(0), 'Global', false, false, false, false, {…}, {…}, {…}, {…}, false, false, 0.8, 'CARD', 'https://ind.idv.hyperverge.co', 'https://hv-camera-web-sg.s3-ap-southeast-1.amazonaws.com/images/backArrow.png', 'https://hv-camera-web-sg.s3-ap-southeast-1.amazonaws.com/images/close.png', 'Select Country', 'This will help us identify your identity', 'Continue', 'Select Document', 'This will help us identify your identity', 'Continue', {…}, {…}, 'documentSelect', 'countrySelect', 'HV_Document_Picker_popup', 'HV_Country_Picker_popup', Array(2), 'Failure', 'Cancelled', 'Success', f, k]
+workflow-trigger.tsx:124 🔍 Config.accessToken: {type: 'string', isArray: false, length: 151, value: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6I…TI4fQ.ckMSEyhnlt8SNw6YkeZrua4aBrHtna35sD7XRh2dl2o'}
+workflow-trigger.tsx:124 🔍 Config.userWorkflow: {type: 'string', isArray: false, length: 22, value: 'shivanch_test_workflow'}
+workflow-trigger.tsx:124 🔍 Config.transactionId: {type: 'string', isArray: false, length: 17, value: 'txn-1761808528253'}
+workflow-trigger.tsx:124 🔍 Config.kycWorkflow: {type: 'object', isArray: true, length: 0, value: Array(0)}
+workflow-trigger.tsx:124 🔍 Config.totalConfigs: {type: 'number', isArray: false, length: undefined, value: 0}
+workflow-trigger.tsx:124 🔍 Config.configNumber: {type: 'number', isArray: false, length: undefined, value: 0}
+workflow-trigger.tsx:124 🔍 Config.documentResult: {type: 'object', isArray: true, length: 0, value: Array(0)}
+workflow-trigger.tsx:124 🔍 Config.livenessResult: {type: 'object', isArray: true, length: 0, value: Array(0)}
+workflow-trigger.tsx:124 🔍 Config.faceMatchResult: {type: 'object', isArray: true, length: 0, value: Array(0)}
+workflow-trigger.tsx:124 🔍 Config.regionName: {type: 'string', isArray: false, length: 6, value: 'Global'}
+workflow-trigger.tsx:124 🔍 Config.shouldShowDocInstructionPage: {type: 'boolean', isArray: false, length: undefined, value: false}
+workflow-trigger.tsx:124 🔍 Config.shouldShowFaceInstructionPage: {type: 'boolean', isArray: false, length: undefined, value: false}
+workflow-trigger.tsx:124 🔍 Config.shouldShowDocReviewScreen: {type: 'boolean', isArray: false, length: undefined, value: false}
+workflow-trigger.tsx:124 🔍 Config.chooseDocumentCaptureOption: {type: 'boolean', isArray: false, length: undefined, value: false}
+workflow-trigger.tsx:124 🔍 Config.documentParams: {type: 'object', isArray: false, length: undefined, value: '{}'}
+workflow-trigger.tsx:124 🔍 Config.livenessParams: {type: 'object', isArray: false, length: undefined, value: '{}'}
+workflow-trigger.tsx:124 🔍 Config.documentHeaders: {type: 'object', isArray: false, length: undefined, value: '{}'}
+workflow-trigger.tsx:124 🔍 Config.livenessHeaders: {type: 'object', isArray: false, length: undefined, value: '{}'}
+workflow-trigger.tsx:124 🔍 Config.handleDocRetries: {type: 'boolean', isArray: false, length: undefined, value: false}
+workflow-trigger.tsx:124 🔍 Config.handleFaceRetries: {type: 'boolean', isArray: false, length: undefined, value: false}
+workflow-trigger.tsx:124 🔍 Config.livenessThreshold: {type: 'number', isArray: false, length: undefined, value: 0.8}
+workflow-trigger.tsx:124 🔍 Config.documentType: {type: 'string', isArray: false, length: 4, value: 'CARD'}
+workflow-trigger.tsx:124 🔍 Config.baseUrl: {type: 'string', isArray: false, length: 29, value: 'https://ind.idv.hyperverge.co'}
+workflow-trigger.tsx:124 🔍 Config.imageBackArrow: {type: 'string', isArray: false, length: 77, value: 'https://hv-camera-web-sg.s3-ap-southeast-1.amazonaws.com/images/backArrow.png'}
+workflow-trigger.tsx:124 🔍 Config.imageClose: {type: 'string', isArray: false, length: 73, value: 'https://hv-camera-web-sg.s3-ap-southeast-1.amazonaws.com/images/close.png'}
+workflow-trigger.tsx:124 🔍 Config.countryPickerTitle: {type: 'string', isArray: false, length: 14, value: 'Select Country'}
+workflow-trigger.tsx:124 🔍 Config.countryPickerDescription: {type: 'string', isArray: false, length: 40, value: 'This will help us identify your identity'}
+workflow-trigger.tsx:124 🔍 Config.countryPickerButtonText: {type: 'string', isArray: false, length: 8, value: 'Continue'}
+workflow-trigger.tsx:124 🔍 Config.documentPickerTitle: {type: 'string', isArray: false, length: 15, value: 'Select Document'}
+workflow-trigger.tsx:124 🔍 Config.documentPickerDescription: {type: 'string', isArray: false, length: 40, value: 'This will help us identify your identity'}
+workflow-trigger.tsx:124 🔍 Config.documentPickerButtonText: {type: 'string', isArray: false, length: 8, value: 'Continue'}
+workflow-trigger.tsx:124 🔍 Config.flow: {type: 'object', isArray: false, length: undefined, value: '{"countryPicker":"COUNTRY_PICKER","documentPicker"…ENT_BACK","faceMatch":"FACE_MATCH","face":"FACE"}'}
+workflow-trigger.tsx:124 🔍 Config.resultStatus: {type: 'object', isArray: false, length: undefined, value: '{"approve":"AUTO_APPROVE","reject":"AUTO_REJECT","review":"MANUAL_REVIEW"}'}
+workflow-trigger.tsx:124 🔍 Config.documentSelectId: {type: 'string', isArray: false, length: 14, value: 'documentSelect'}
+workflow-trigger.tsx:124 🔍 Config.countrySelectId: {type: 'string', isArray: false, length: 13, value: 'countrySelect'}
+workflow-trigger.tsx:124 🔍 Config.documentSelectPopupId: {type: 'string', isArray: false, length: 24, value: 'HV_Document_Picker_popup'}
+workflow-trigger.tsx:124 🔍 Config.countrySelectPopupId: {type: 'string', isArray: false, length: 23, value: 'HV_Country_Picker_popup'}
+workflow-trigger.tsx:124 🔍 Config.documentSides: {type: 'object', isArray: true, length: 2, value: Array(2)}
+workflow-trigger.tsx:124 🔍 Config.failureTag: {type: 'string', isArray: false, length: 7, value: 'Failure'}
+workflow-trigger.tsx:124 🔍 Config.cancelledTag: {type: 'string', isArray: false, length: 9, value: 'Cancelled'}
+workflow-trigger.tsx:124 🔍 Config.successTag: {type: 'string', isArray: false, length: 7, value: 'Success'}
+workflow-trigger.tsx:124 🔍 Config.docTextConfig: {type: 'object', isArray: false, length: undefined, value: '{"docFrontCaptureTitle":"Capture Front Side","docB…ocRetakeScreenButtonText":"Retake ID Card Photo"}'}
+workflow-trigger.tsx:124 🔍 Config.faceTextConfig: {type: 'object', isArray: false, length: undefined, value: '{"faceCaptureTitle":"Capture Selfie","faceCaptureD…:"","faceRetakeScreenButtonText":"Retake Selfie"}'}
+workflow-trigger.tsx:185 🚀 About to launch HyperKYC workflow
+workflow-trigger.tsx:186 🚀 Launch parameters: {workflowID: 'shivanch_test_workflow', transactionID: 'txn-1761808528253', hasToken: true, configObject: b, configType: 'object', …}
+workflow-trigger.tsx:196 🔍 HyperKYCModule before launch: {type: 'object', hasLaunch: 'function', methods: Array(1)}
+workflow-trigger.tsx:208 🚀 Calling HyperKYCModule.launch...
+workflow-trigger.tsx:211 ✅ HyperKYCModule.launch completed successfully
+sdk.min.js:88 Uncaught (in promise) TypeError: b.forEach is not a function
+(anonymous) @ sdk.min.js:88
+(anonymous) @ sdk.min.js:21
+(anonymous) @ sdk.min.js:17
+(anonymous) @ sdk.min.js:22
+(anonymous) @ sdk.min.js:23
+(anonymous) @ sdk.min.js:23
+(anonymous) @ sdk.min.js:23
+createGlobalWorkflow @ sdk.min.js:88
+(anonymous) @ sdk.min.js:88
+(anonymous) @ sdk.min.js:21
+(anonymous) @ sdk.min.js:17
+(anonymous) @ sdk.min.js:22
+(anonymous) @ sdk.min.js:23
+(anonymous) @ sdk.min.js:23
+(anonymous) @ sdk.min.js:23
+start @ sdk.min.js:88
+(anonymous) @ sdk.min.js:87
+(anonymous) @ sdk.min.js:21
+(anonymous) @ sdk.min.js:17
+(anonymous) @ sdk.min.js:22
+g @ sdk.min.js:23
+Promise.then
+c @ sdk.min.js:23
+(anonymous) @ sdk.min.js:23
+(anonymous) @ sdk.min.js:23
+(anonymous) @ sdk.min.js:23
+launch @ sdk.min.js:87
+handleWorkflowLaunch @ workflow-trigger.tsx:210
+await in handleWorkflowLaunch
+executeDispatch @ react-dom-client.development.js:16971
+runWithFiberInDEV @ react-dom-client.development.js:872
+processDispatchQueue @ react-dom-client.development.js:17021
+eval @ react-dom-client.development.js:17622
+batchedUpdates$1 @ react-dom-client.development.js:3312
+dispatchEventForPluginEventSystem @ react-dom-client.development.js:17175
+dispatchEvent @ react-dom-client.development.js:21358
+dispatchDiscreteEvent @ react-dom-client.development.js:21326
+<button>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:323
+_c @ button.tsx:46
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateForwardRef @ react-dom-client.development.js:8807
+beginWork @ react-dom-client.development.js:11197
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15721
+renderRootConcurrent @ react-dom-client.development.js:15696
+performWorkOnRoot @ react-dom-client.development.js:14990
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+<Button>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:323
+WorkflowTrigger @ workflow-trigger.tsx:257
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10858
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15721
+renderRootConcurrent @ react-dom-client.development.js:15696
+performWorkOnRoot @ react-dom-client.development.js:14990
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+<WorkflowTrigger>
+exports.jsxDEV @ react-jsx-dev-runtime.development.js:323
+VerificationPage @ page-with-api.tsx:333
+react_stack_bottom_frame @ react-dom-client.development.js:23584
+renderWithHooksAgain @ react-dom-client.development.js:6893
+renderWithHooks @ react-dom-client.development.js:6805
+updateFunctionComponent @ react-dom-client.development.js:9247
+beginWork @ react-dom-client.development.js:10807
+runWithFiberInDEV @ react-dom-client.development.js:872
+performUnitOfWork @ react-dom-client.development.js:15727
+workLoopConcurrentByScheduler @ react-dom-client.development.js:15721
+renderRootConcurrent @ react-dom-client.development.js:15696
+performWorkOnRoot @ react-dom-client.development.js:14990
+performWorkOnRootViaSchedulerTask @ react-dom-client.development.js:16816
+performWorkUntilDeadline @ scheduler.development.js:45
+"use client"
+Page @ page.tsx:5
+initializeElement @ react-server-dom-webpack-client.browser.development.js:1344
+eval @ react-server-dom-webpack-client.browser.development.js:3066
+initializeModelChunk @ react-server-dom-webpack-client.browser.development.js:1246
+getOutlinedModel @ react-server-dom-webpack-client.browser.development.js:1634
+parseModelString @ react-server-dom-webpack-client.browser.development.js:1993
+eval @ react-server-dom-webpack-client.browser.development.js:2996
+initializeModelChunk @ react-server-dom-webpack-client.browser.development.js:1246
+resolveModelChunk @ react-server-dom-webpack-client.browser.development.js:1101
+processFullStringRow @ react-server-dom-webpack-client.browser.development.js:2899
+processFullBinaryRow @ react-server-dom-webpack-client.browser.development.js:2766
+processBinaryChunk @ react-server-dom-webpack-client.browser.development.js:2969
+progress @ react-server-dom-webpack-client.browser.development.js:3233
+<Page>
+Promise.all @ VM3149 <anonymous>:1
+initializeFakeTask @ react-server-dom-webpack-client.browser.development.js:2529
+initializeDebugInfo @ react-server-dom-webpack-client.browser.development.js:2554
+initializeDebugChunk @ react-server-dom-webpack-client.browser.development.js:1193
+processFullStringRow @ react-server-dom-webpack-client.browser.development.js:2850
+processFullBinaryRow @ react-server-dom-webpack-client.browser.development.js:2766
+processBinaryChunk @ react-server-dom-webpack-client.browser.development.js:2969
+progress @ react-server-dom-webpack-client.browser.development.js:3233
+"use server"
+ResponseInstance @ react-server-dom-webpack-client.browser.development.js:2041
+createResponseFromOptions @ react-server-dom-webpack-client.browser.development.js:3094
+exports.createFromReadableStream @ react-server-dom-webpack-client.browser.development.js:3478
+eval @ app-index.js:130
+(app-pages-browser)/./node_modules/next/dist/client/app-index.js @ main-app.js?v=1761808523287:160
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+fn @ webpack.js:1
+eval @ app-next-dev.js:14
+eval @ app-bootstrap.js:59
+eval @ app-bootstrap.js:49
+Promise.then
+loadScriptsInSequence @ app-bootstrap.js:48
+appBootstrap @ app-bootstrap.js:53
+eval @ app-next-dev.js:13
+(app-pages-browser)/./node_modules/next/dist/client/app-next-dev.js @ main-app.js?v=1761808523287:182
+options.factory @ webpack.js:1
+__webpack_require__ @ webpack.js:1
+__webpack_exec__ @ main-app.js?v=1761808523287:1889
+(anonymous) @ main-app.js?v=1761808523287:1890
+webpackJsonpCallback @ webpack.js:1
+(anonymous) @ main-app.js?v=1761808523287:9Understand this error
